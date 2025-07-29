@@ -1,115 +1,76 @@
 # Tree Plantation Health Detection Model
 
-# Code Documentation
+## Code Documentation
 
-## 1. Introduction
+### 1. Introduction
 
-#### This document provides detailed documentation for the implementation of aTree
+This document provides detailed documentation for the implementation of a Tree Plantation Health Detection Model intended for deployment on Jetson Nano-based drones and UAVs.
 
-#### Plantation Health Detection Modelfor deployment in Jetson Nano indrones and UAVs.
+The purpose of this project is to detect and analyze the health condition of trees using a YOLO-based object detection model, annotated images, and custom logical attributes. This guide breaks down the code into sections and provides usage instructions, explanations, and prerequisites required to run the implementation.
 
-#### The purpose of this project is todetect and analyze the health condition of treesusing a
+The detection model has been optimized for Jetson Nano, which is commonly used in drones with limited RAM and memory. A highly efficient YOLOv8 (nano) model and a quantized version of TinyLlama have been used to ensure smooth inference without heavy computational load.
 
-#### YOLO-based object detection model, custom attributes, and annotated images. This guide
+---
 
-#### breaks down the code into sections and provides explanations, usage guidance,and
+### 2. Prerequisites
 
-#### prerequisites required to run the implementation.
+Before running the code, ensure you have the following:
 
-#### Thedetection model has been created for Jetson Nano used in drones and UAVs which have
+- Python 3.8 or higher  
+- Jupyter Notebook  
+- Required Python libraries (install using `pip`):
+  - `ultralytics`
+  - `opencv-python`
+  - `matplotlib`
+  - `os`
+  - `json`
+- A trained YOLOv8 model (e.g., `best.pt`) placed in the correct directory  
+- Input image directory with test images  
+- Output directory for saving annotated images and JSON files
 
-#### limited RAM and memory.Hence, highlyoptimized YOLOv8 (nano)model andquantized
+---
 
-#### version of TinyLlamahas been used for inference so that the model can run smoothly on
+### 3. Implementation Overview
 
-#### drones without any physical computation constraints.
+This implementation offers a practical solution for automated tree health monitoring in afforestation zones using YOLO-based object detection. It's designed for deployment on drones to enable large-scale, real-time environmental analysis.
 
-## 2. Prerequisites
+<details>
+<summary>Key Steps</summary>
 
-#### Before running the code, ensure you have the following installed:
+1. **Import Required Libraries**  
+   Load necessary Python libraries including Ultralytics YOLO, OpenCV, JSON, and Matplotlib for visualization.
 
-#### · Python 3.8 or higher
+2. **Load YOLO Model**  
+   Use a pre-trained YOLOv8 model (`best.pt`) to detect objects in plantation images.
 
-#### · Jupyter Notebook
+3. **Read Test Images**  
+   Load all test images from a specified directory into memory for processing.
 
-#### · Required Python libraries(install using pip):
+4. **Run Detection**  
+   Pass each image through the YOLO model to obtain bounding boxes and class predictions.
 
-#### ultralytics
+5. **Extract and Visualize Results**  
+   Use OpenCV to draw bounding boxes and extract metadata from predictions.
 
-#### opencv-python
+6. **Save Metadata in JSON Format**  
+   Store model predictions, including standard COCO-style data and custom attributes (e.g., `HealthStatus`, `HasLeaves`, `TreeHeightCategory`, etc.), in structured JSON files.
 
-#### matplotlib
+7. **Save Annotated Images**  
+   Save output images with drawn bounding boxes for verification and record-keeping.
 
-#### os
+</details>
 
-#### json
+---
 
-#### · A trained YOLOv8 model (e.g., best.pt) placed in the appropriate path
+### 4. Use Case and Benefits
 
-#### · Input image directory with test images
+This model provides a scalable framework for integrating computer vision into smart forestry and environmental monitoring. When mounted on drones, it enables:
 
-#### · Output directory for saving bounding box images and JSONs
+- Tracking the progress of afforestation efforts  
+- Identifying unhealthy or isolated trees  
+- Planning data-driven forestry interventions  
+- Reducing manual fieldwork  
+- Accelerating decision-making  
+- Ensuring transparent and accountable forest governance
 
-## 3. Implementation
-
-#### This implementation presents a practical solution forautomated tree health monitoring
-
-#### in afforestation zones usingYOLO-based object detection, ideally deployable ondrones
-
-#### for large-scale environmental tracking. By combining deep learning with logical
-
-#### annotation, this model allows for near real-time analysis of tree conditions, crucial for
-
-#### government forestry departments,reforestation initiatives, andeco-restoration
-
-#### projects.
-
-#### The steps implemented in this project can be summarized as:
-
-#### · Importing Required Libraries: Loaded all necessary Python libraries, including
-
-#### Ultralytics' YOLO, OpenCV, JSON, and matplotlib for visualization.
-
-#### · Loading theYOLO Model: A pre-trained YOLOv8 model (best.pt) was loaded to
-
-#### perform detection on plantation images.
-
-#### · Reading Test Images: Images from a specified directory were loaded into a list for
-
-#### processing.
-
-#### · Running Detection: Each test image was passed through the YOLO model to get
-
-#### predictions including bounding boxes and class information.
-
-#### · Extracting and Visualizing Results: Bounding boxes were drawn on the images
-
-#### using OpenCV, and relevant prediction metadata was extracted.
-
-#### · Storing Metadata in JSON: The model's predictions, including both standard COCO-
-
-#### style and custom logical attributes (like HealthStatus, HasLeaves,
-
-#### TreeHeightCategory, etc.), were saved into structured JSON files.
-
-#### · Saving Annotated Images: The result images with bounding boxes were saved to
-
-#### disk for visual inspection and record-keeping.
-
-#### This model provides ascalable frameworkfor integratingcomputer vision into smart
-
-#### environmental monitoring systems. When mounted on drones, it can assist government
-
-#### bodies in:
-
-#### · Tracking afforestation progress,
-
-#### · Detecting unhealthy or isolated trees,
-
-#### · Planning interventions with data-driven insights.
-
-#### By automating observation and logging, this solution helpsreduce manual fieldwork,
-
-#### improvedecision-making speed, and maintaintransparent, evidence-based forest
-
-#### governance.
+---
