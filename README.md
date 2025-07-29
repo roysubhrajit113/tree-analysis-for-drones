@@ -27,6 +27,7 @@ Before running the code, ensure you have the following:
 - A trained YOLOv8 model (e.g., `best.pt`) placed in the correct directory  
 - Input image directory with test images  
 - Output directory for saving annotated images and JSON files
+- Quantized TinyLlama Model GGUF (You may download from the following link: [Click Here](https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF))
 
 ---
 
