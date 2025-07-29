@@ -29,6 +29,15 @@ Before running the code, ensure you have the following:
 - Output directory for saving annotated images and JSON files
 - Quantized TinyLlama Model GGUF (You may download from the following link: [Click Here](https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF))
 
+## Install and Run llama.cpp
+
+```bash
+git clone https://github.com/ggerganov/llama.cpp && cd llama.cpp
+make
+./main -m models/your-model.gguf -p "Hello!"
+```
+Replace `your-model.gguf` with your actual model file (e.g., `tinyllama-1b-chat.gguf`) placed inside the `models/` folder.
+
 ---
 
 ### 3. Implementation Overview
