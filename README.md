@@ -8,7 +8,7 @@ This document provides detailed documentation for the implementation of a Tree P
 
 The purpose of this project is to detect and analyze the health condition of trees using a YOLO-based object detection model, annotated images, and custom logical attributes. This guide breaks down the code into sections and provides usage instructions, explanations, and prerequisites required to run the implementation.
 
-The detection model has been optimized for Jetson Nano, which is commonly used in drones with limited RAM and memory. A highly efficient YOLOv8 (nano) model and a quantized version of TinyLlama have been used to ensure smooth inference without heavy computational load.
+The detection model has been optimized for Jetson Nano, which is commonly used in drones with limited RAM and memory. A highly efficient YOLOv8 (nano) model and a quantized version of TinyLlama have been used to ensure smooth inference without heavy computational load. The detections will either be a single tree or clustered trees, whose information you may check in the inference prompts generated later.
 
 ---
 
@@ -131,6 +131,21 @@ tree_plantation/                  <- BASE_DIR
     └── image2_llm_output.txt
 ```
 
-### 6. Sample Results
+### 6. Sample YOLO Detection Results
+
+You may see the sample results of detections by YOLO below:
+
+1. The following is the YOLO detection of a random image of a tree plantation taken from the Internet.
+
+<div>
+  <img src="sample_results/image1.jpg" alt="Image 1" width="300" />
+  <img src="sample_results/image1_results.png" alt="Image 1 Results" width="300" />
+</div>
 
 
+2. The following is the YOLO detection of a real-time image captured of a forest in Madhya Pradesh, India using a drone.
+
+<div>
+  <img src="sample_results/image2.jpg" alt="Image 2" width="300" />
+  <img src="sample_results/image2_results.png" alt="Image 2 Results" width="300" />
+</div>
