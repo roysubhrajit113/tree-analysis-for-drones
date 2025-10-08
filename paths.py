@@ -23,6 +23,7 @@ YOLO_MODEL_PATH = f"{BASE_DIR}/models/best.pt"
 LLAMA_MODEL_PATH = f"{BASE_DIR}/models/your-model-name.gguf"
 INPUT_IMAGE_PATH = f"{BASE_DIR}/test_images"
 OUTPUT_IMAGE_PATH = f"{BASE_DIR}/test_results"
-OUTPUT_JSON_PATH = f"{BASE_DIR}/test_inference"
+OUTPUT_JSON_PATH = f"{BASE_DIR}/test_inference_prompts"
+
 
 
