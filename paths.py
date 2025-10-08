@@ -22,8 +22,9 @@ BASE_DIR = "/home/user/tree_plantation/"
 YOLO_MODEL_PATH = f"{BASE_DIR}/models/best.pt"
 LLAMA_MODEL_PATH = f"{BASE_DIR}/models/your-model-name.gguf"
 INPUT_IMAGE_PATH = f"{BASE_DIR}/test_images"
+
+# You need not require change the following paths
+
 OUTPUT_IMAGE_PATH = f"{BASE_DIR}/test_results"
-OUTPUT_JSON_PATH = f"{BASE_DIR}/test_inference_prompts"
-
-
-
+OUTPUT_JSON_PATH = f"{BASE_DIR}/test_inference"
+OUTPUT_INFERENCE_RESULTS_PATH = f"{BASE_DIR}/test_inference_result_outputs"
