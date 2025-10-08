@@ -134,6 +134,7 @@ tree_plantation/                  <- BASE_DIR
 ### 6. Sample YOLO Detection Results
 
 You may see the sample results of detections by YOLO below:
+<br>
 
 1. The following is the YOLO detection of a random image of a tree plantation taken from the Internet.
 
@@ -141,7 +142,6 @@ You may see the sample results of detections by YOLO below:
   <img src="sample_results/image1.jpg" alt="Image 1" width="300" />
   <img src="sample_results/image1_results.png" alt="Image 1 Results" width="300" />
 </div>
-
 
 2. The following is the YOLO detection of a real-time image captured of a forest in Madhya Pradesh, India using a drone.
 
