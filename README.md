@@ -96,3 +96,41 @@ This model provides a scalable framework for integrating computer vision into sm
 - Ensuring transparent and accountable forest governance
 
 ---
+
+### 5. Final Directory Structure
+
+The final directory structure after running the above `run_inference.py` will look like:
+
+```
+tree_plantation/                  <- BASE_DIR
+│
+├── models/                        <- Store models here
+│   ├── best.pt                    <- YOLOv8n trained model
+│   └── your-model-name.gguf       <- TinyLlama quantized GGUF model
+│
+├── test_images/                   <- Input images for inference
+│   ├── image1.jpg
+│   ├── image2.png
+│   └── ...
+│
+├── test_results/                  <- YOLO annotated images (output)
+│   ├── image1.jpg
+│   ├── image2.png
+│   └── ...
+│
+├── test_inference/                <- JSON outputs and prompts
+│   ├── image1.json
+│   ├── image2.json
+│   └── ...
+│   └── inference_prompts/         <- Prompts generated from JSON
+│       ├── image1_inference.txt
+│       └── image2_inference.txt
+│
+└── test_inference_result_outputs/ <- LLM outputs
+    ├── image1_llm_output.txt
+    └── image2_llm_output.txt
+```
+
+### 6. Sample Results
+
+
