@@ -1,0 +1,14 @@
+# --- Core ---
+numpy
+opencv-python-headless
+matplotlib
+pillow
+tqdm
+datasets
+ultralytics
+
+# --- LLM + TinyLlama ---
+llama-cpp-python
+
+# --- Utilities ---
+prettytable
