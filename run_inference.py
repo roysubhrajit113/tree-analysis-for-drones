@@ -306,9 +306,6 @@ print("\nAll inference prompts saved in:", inference_output_dir)
 #====================================
 #------- Running LLM Inference ------
 #====================================
-#====================================
-#------- Running LLM Inference ------
-#====================================
 
 inference_results_dir = OUTPUT_INFERENCE_RESULTS_PATH
 os.makedirs(inference_results_dir, exist_ok=True)
@@ -334,3 +331,4 @@ for index, json_file in enumerate(json_file_set):
         f.write(result_text)
 
 print("\nAll LLM inference results saved in:", inference_results_dir)
+
