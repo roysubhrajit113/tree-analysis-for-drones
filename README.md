@@ -17,19 +17,18 @@ The detection model has been optimized for Jetson Nano, which is commonly used i
 Before running the code, ensure you have the following:
 
 - Python 3.8 or higher  
-- Jupyter Notebook  
 - Required Python libraries (install using `pip`):
   - `ultralytics`
   - `opencv-python`
   - `matplotlib`
   - `os`
   - `json`
-- A trained YOLOv8 model (e.g., `best.pt`) placed in the correct directory  
-- Input image directory with test images  
+- A trained YOLOv8 model (e.g., `best.pt`) placed in the correct directory  (by default, in the `/models` directory)
+- Input image directory with test images  (by default, in the `/test_images` directory)
 - Output directory for saving annotated images and JSON files
 - Quantized TinyLlama Model GGUF (You may download from the following link: [Click Here](https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF))
 
-## Install and Run llama.cpp
+## Install LLaMA Model and Run llama.cpp
 
 ```bash
 git clone https://github.com/ggerganov/llama.cpp && cd llama.cpp
@@ -37,6 +36,15 @@ make
 ./main -m models/your-model.gguf -p "Hello!"
 ```
 Replace `your-model.gguf` with your actual model file (e.g., `tinyllama-1b-chat.gguf`) placed inside the `models/` folder.
+
+To install the above prerequisites
+```bash
+pip install -r requirements.txt
+```
+
+You must change the input and output directory paths according to your requirements in the `paths.py` file.
+
+You may change the tree attribute tunable parameters according to your requirements in the `config.py` file.
 
 ---
 
@@ -67,6 +75,10 @@ This implementation offers a practical solution for automated tree health monito
 
 7. **Save Annotated Images**  
    Save output images with drawn bounding boxes for verification and record-keeping.
+
+8. **Use Metadata for Inference**
+
+   Uses a pre-defined prompt using the metadata to store inference about the health of plantation using TinyLLaMA model, and stores the inference in text files for each image.
 
 </details>
 
