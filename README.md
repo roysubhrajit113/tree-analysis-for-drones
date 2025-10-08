@@ -48,7 +48,13 @@ You may change the tree attribute tunable parameters according to your requireme
 
 ---
 
-### 3. Implementation Overview
+### 3. Run
+
+```bash
+python run_inference.py
+```
+
+### 4. Implementation Overview
 
 This implementation offers a practical solution for automated tree health monitoring in afforestation zones using YOLO-based object detection. It's designed for deployment on drones to enable large-scale, real-time environmental analysis.
 
@@ -84,7 +90,7 @@ This implementation offers a practical solution for automated tree health monito
 
 ---
 
-### 4. Use Case and Benefits
+### 5. Use Case and Benefits
 
 This model provides a scalable framework for integrating computer vision into smart forestry and environmental monitoring. When mounted on drones, it enables:
 
@@ -97,7 +103,7 @@ This model provides a scalable framework for integrating computer vision into sm
 
 ---
 
-### 5. Final Directory Structure
+### 6. Final Directory Structure
 
 The final directory structure after running the above `run_inference.py` will look like:
 
@@ -131,7 +137,7 @@ tree_plantation/                  <- BASE_DIR
     └── image2_llm_output.txt
 ```
 
-### 6. Sample YOLO Detection Results
+### 7. Sample YOLO Detection Results
 
 You may see the sample results of detections by YOLO below:
 <br>
