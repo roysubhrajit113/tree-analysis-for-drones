@@ -189,24 +189,22 @@ for index in range(len(image_file_set)):
 
     print(f"Saved JSON: {output_path}")
 
+
 #====================================
-#- YOLO Results and JSON Attributes -
+#---------- Saving Prompts ----------
 #====================================
 
 json_dir = OUTPUT_JSON_PATH
-inference_output_dir = os.path.join(json_dir, "inference_outputs")
+inference_output_dir = os.path.join(json_dir, "inference_prompts")
 os.makedirs(inference_output_dir, exist_ok=True)
 
-json_file_set = []
+# Ensure sorted order
+json_file_set = sorted([f for f in os.listdir(json_dir) if f.endswith(".json")])
+
 prompt_set = []
 
-for json_file in os.listdir(json_dir):
-    if not json_file.endswith(".json"):
-        continue
-
+for json_file in json_file_set:
     json_file_path = os.path.join(json_dir, json_file)
-    json_file_set.append(json_file)
-
     with open(json_file_path, "r") as f:
         data = json.load(f)
 
@@ -262,35 +260,35 @@ for json_file in os.listdir(json_dir):
     avg_bbox_area = total_area / total_trees if total_trees else 0
 
     prompt = f"""### Instruction:
-    You are a forestry assistant analyzing this drone image with object detection and semantic attributes.
+You are a forestry assistant analyzing this drone image with object detection and semantic attributes.
 
-    ### Input:
-    Image: {image_name}
-    Total Trees: {total_trees}
-    - Single: {single_trees}
-    - Clustered: {clustered_trees}
-    - Uncertain Detections (<0.5 confidence): {uncertain_trees}
+### Input:
+Image: {image_name}
+Total Trees: {total_trees}
+- Single: {single_trees}
+- Clustered: {clustered_trees}
+- Uncertain Detections (<0.5 confidence): {uncertain_trees}
 
-    Detection Stats:
-    - Avg Confidence: {avg_confidence:.2f}
-    - Avg BBox Area: {avg_bbox_area:.2f}
+Detection Stats:
+- Avg Confidence: {avg_confidence:.2f}
+- Avg BBox Area: {avg_bbox_area:.2f}
 
-    Tree Attributes Summary:
-    - Health Statuses: {dict(health_counter)}
-    - Trees with Leaves: {has_leaves_count}
-    - Isolated Trees: {isolated_count}
-    - Trees with Visible Crown: {visible_crown_count}
-    - Canopy Coverage Types: {dict(canopy_coverage_counter)}
-    - Tree Height Categories: {dict(height_category_counter)}
+Tree Attributes Summary:
+- Health Statuses: {dict(health_counter)}
+- Trees with Leaves: {has_leaves_count}
+- Isolated Trees: {isolated_count}
+- Trees with Visible Crown: {visible_crown_count}
+- Canopy Coverage Types: {dict(canopy_coverage_counter)}
+- Tree Height Categories: {dict(height_category_counter)}
 
-    ### Questions:
-    1. Assess plantation health and density. Are trees healthy, dense, and well-distributed?
-    2. What actions should be taken to improve plantation health?
-    3. Are there signs of overcrowding, poor spacing, or deforested gaps?
-    4. If there are any clustered trees detected, is their overall canopy coverage healthy?
+### Questions:
+1. Assess plantation health and density. Are trees healthy, dense, and well-distributed?
+2. What actions should be taken to improve plantation health?
+3. Are there signs of overcrowding, poor spacing, or deforested gaps?
+4. If there are any clustered trees detected, is their overall canopy coverage healthy?
 
-    ### Response:
-    """
+### Response:
+"""
 
     prompt_set.append(prompt)
 
@@ -302,4 +300,37 @@ for json_file in os.listdir(json_dir):
 
     print(f"Saved inference summary: {txt_path}")
 
-print("\n All inference prompts saved in:", inference_output_dir)
+print("\nAll inference prompts saved in:", inference_output_dir)
+
+
+#====================================
+#------- Running LLM Inference ------
+#====================================
+#====================================
+#------- Running LLM Inference ------
+#====================================
+
+inference_results_dir = OUTPUT_INFERENCE_RESULTS_PATH
+os.makedirs(inference_results_dir, exist_ok=True)
+
+llm = Llama(model_path=LLAMA_MODEL_PATH)
+
+for index, json_file in enumerate(json_file_set):
+    prompt = prompt_set[index]
+    
+    # Generate output from Llama
+    output = llm(prompt, max_tokens=768, temperature=0.5, top_p=0.9, repeat_penalty=1.1)
+    result_text = output['choices'][0]['text'].strip()
+
+    # Display output
+    print(f"Output for {json_file}:")
+    print(result_text)
+    print("\n" + "-"*110 + "\n")
+
+    # Save output to file
+    base_name = os.path.splitext(json_file)[0]
+    result_file_path = os.path.join(inference_results_dir, f"{base_name}_llm_output.txt")
+    with open(result_file_path, "w") as f:
+        f.write(result_text)
+
+print("\nAll LLM inference results saved in:", inference_results_dir)
